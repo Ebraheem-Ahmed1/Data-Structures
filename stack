@@ -1,0 +1,43 @@
+#include <iostream>
+#include <list>
+
+using namespace std;
+
+template <class T>
+class stack_{
+private:
+    list<T> a;
+public:
+    void push(T data) {
+        a.push_back(data);
+    }
+    void pop() {
+        a.pop_back();
+    }
+    T top() {
+        return *a.end();
+    }
+    bool is_empty() {
+        return a.empty();
+    }
+    bool search(T data) {
+        for (auto i = a.begin(); i != a.end(); i++) {
+            if (*i == data) {
+                cout << "found" << endl;
+                return true;
+            }
+        }
+        cout << "not found" << endl;
+        return false;
+    }
+    void print() {
+        for (auto i = a.begin(); i != a.end(); i++) {
+             cout<<*i<<" ";    
+        }
+    }
+};
+
+int main(){
+
+   return 0;
+}
