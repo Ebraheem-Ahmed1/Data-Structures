@@ -1,0 +1,36 @@
+#include <iostream>
+
+using namespace std;
+
+template <class A>
+struct Node {
+    A data;
+    Node *next;
+};
+
+template <class A>
+class list_ {
+private:
+    Node<A> *head;
+public:
+    list_() {
+        head = NULL;
+    }
+    void add(A Data) {
+        Node<A> *node = new Node<A>;
+        node->data = Data;
+        node->next = NULL;
+        if (head == NULL) { head = node; }
+        else { node = node->next; }
+    }
+    void remove() {
+        for (auto i = head->next; i != NULL; i = i->next) {
+            if (i->next == NULL) { delete i; }
+        }
+    }
+};
+
+int main(){
+
+    return 0;
+}
