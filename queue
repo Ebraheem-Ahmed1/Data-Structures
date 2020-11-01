@@ -1,0 +1,39 @@
+#include <iostream>
+
+using namespace std;
+
+template <class E>
+class queue_ {
+private:
+    list<E> a;
+public:
+    void add(E data) {
+        a.push_back(data);
+    }
+    void remove() {
+        a.pop_front();
+    }
+    bool is_empty() {
+        return a.empty();
+    }
+    bool search(E data) {
+        for (auto i = a.begin(); i != a.end(); i++) {
+            if (*i == data) {
+                cout << "found" << endl;
+                return true;
+            }
+        }
+        cout << "not found" << endl;
+        return false;
+    }
+    void print() {
+        for (auto i = a.begin(); i != a.end(); i++) {
+            cout << *i << " ";
+        }
+    }
+};
+
+int main(){
+
+   return 0;
+}
