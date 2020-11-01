@@ -1,0 +1,53 @@
+#include <iostream>
+
+using namespace std;
+
+template <class B>
+class disjoint_set {
+private:
+    B *set;
+    int *id, n;
+public:
+    disjoint_set(int n) {
+        set = new B[n];
+        id = new int[n];
+        this->n = n;
+        make_set();
+    }
+    void make_set() {
+        for (int i = 0; i < n; i++) {
+            id[i] = i;
+        }
+    }
+    void set_elements() {
+        for (int i = 0; i < n; i++) {
+            cin >> set[i];
+        }
+    }
+    int find(int x) {
+        if (id[x] != x)
+            id[x] = find(id[x]);
+        return id[x];
+    }
+    bool connected(B p, B q) {
+        int root1 = find(p);
+        int root2 = find(q);
+        return root1 == root2;
+    }
+    int unify(B p, B q) {
+        int root1 = find(p);
+        int root2 = find(q);
+        while (root1 != id[root1])
+            root1 = id[root1];
+        while (root2 != id[root2])
+            root2 = id[root2];
+        if (root1 == root2)
+            return 0;
+        return id[root1] > id[root2] ? id[root2] = id[root1] : id[root1] = id[root2];
+    }
+};
+
+int main(){
+   
+   return 0;
+}
