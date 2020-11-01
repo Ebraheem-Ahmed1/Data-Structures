@@ -1,0 +1,84 @@
+#include <iostream>
+
+using namespace std;
+
+class BST {
+    struct TNode {
+        int data;
+        TNode* left;
+        TNode* right;
+    };
+private:
+    TNode *root;
+public:
+    BST() {
+        root = NULL;
+    }
+    TNode *digLeft(TNode *r) {
+        while(r->left!=NULL)
+           r = r->left;
+        return r;
+    }
+    TNode *digRight(TNode *r) {
+        while(r->right!=NULL)
+           r = r->right;
+        return r;
+    }
+    bool add(int Data) {
+        TNode *node = new TNode;
+        node->data = Data;
+        node->left = NULL;
+        node->right = NULL;
+        if (search(Data) != 0)
+            return false;
+        while (true) {
+            if (root == NULL) {
+                root = node;
+                return true;
+            }
+            else if (Data > root->data)
+                root = root->right;
+            else if (Data < root->data)
+                root = root->left;
+        }
+    }
+    TNode *search(int Data) {
+        while (true) {
+            if (root == NULL)
+                return 0;
+            else if (root->data == Data)
+                return root;
+            else if (Data > root->data)
+                root = root->right;
+            else if (Data < root->data)
+                root = root->left;
+        }
+    }
+    bool remove(int Data) {
+        if (search(Data) == 0)
+            return false;
+        else {
+            TNode* R = search(Data);
+            if (R->left == NULL) {
+                R = R->right;
+                delete R;
+            }
+            else if (R->right == NULL) {
+                R = R->left;
+                delete R;
+            }
+            else {
+                TNode* S = R->right;
+                S = digLeft(S);
+                R->data = S->data;
+                delete S;
+            }
+            return true;
+        }
+    }
+};
+
+innt main(){
+
+   return 0;
+}
